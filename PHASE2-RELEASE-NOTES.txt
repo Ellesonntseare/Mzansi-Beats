@@ -1,0 +1,79 @@
+MZANSI BEATS / FUTURE//BEATS
+PHASE 2 — COMMUNITY & SOCIAL RELEASE
+
+This ZIP is a full application replacement based on Phase 1.
+Keep your existing data folder and Windows folder configuration!
+
+NEW FOR VIEWERS
+- Like every public video: Featured, viewer uploads, and music videos.
+- Comment and reply on every video; creators can moderate their own comments.
+- Save videos to the Library and return to watch later.
+- Creator profiles with bios, profile photos, music, uploads, follower counts.
+- Follow creators, including normal viewer accounts that upload videos.
+- Browse a Following video feed.
+- Search videos, creators and music from the same search bar.
+- Share a video with a direct link (?v=source:id), or a creator profile link.
+- Notifications for video likes, comments, replies and new uploads by followed creators.
+- Report inappropriate uploads, spam, copyright issues or harassment.
+
+FOR ADMINS
+- View reports and mark them resolved.
+- Hide and restore Featured videos (including those stored in the PC video folder)
+  without moving files; hidden items cannot be accessed via the normal video URL.
+- Hide or restore uploaded/artist videos. Existing admin options remain.
+
+FOR CREATORS
+- New public profile for any signed-up creator with videos, music and followers.
+- Optional JPG/PNG/WebP profile picture, with a 2 MB upload limit.
+- Public profile link and Follow button.
+
+COMPATIBILITY
+- The existing Phase 1 music, music purchasing, video upload, Windows
+  video directory, streaming and account code is retained.
+- New JSON database arrays are created lazily; old db.json is supported.
+- Uploaded videos continue to use data/community-videos/.
+- PC video locations still come from VIDEO-FOLDER.txt or VIDEO_DIR.
+- Service worker and frontend assets have new cache version to avoid stale UI.
+
+DEPLOY SAFELY ON WINDOWS
+1. STOP the old server (close START-WINDOWS.bat / Node process).
+2. BACK UP the complete existing mzansi-beats folder, especially:
+   data/db.json, data/uploads/, data/community-videos/, VIDEO-FOLDER.txt.
+3. Extract the new ZIP into a NEW folder.
+4. COPY your existing data/ folder and VIDEO-FOLDER.txt (if present) into
+   the NEW extracted mzansi-beats/ folder. Do not replace your existing data
+   with empty folders from the ZIP. If using a VIDEO_DIR environment variable,
+   preserve it as well.
+5. If this is an installation with no admin, run SETUP-OWNER.bat locally.
+6. Start the new START-WINDOWS.bat / Node.js server.
+7. Check http://localhost:3000/api/public-feed and confirm existing videos.
+8. Keep the Cloudflare Tunnel service URL pointed to the NEW server's port.
+9. Open https://beats.teamtrader.co.za/ and hard-refresh (Ctrl+Shift+R).
+10. Test login, creator profile, likes, comments, uploads and saved videos.
+
+ROLLBACK
+Stop new Node process. Restore the original folder and copied data/
+from the backup, then restart the old server. Do not edit DB records by hand.
+
+SAFETY
+- All files under your configured public Windows video directory can be
+  viewed by internet visitors unless hidden by an admin.
+- Only publish content you have the rights to share publicly.
+- The 5 GB upload quota and 250 MB individual upload limit remain from Phase 1.
+- Reporting needs an admin to review the queue; it does not automatically
+  detect or remove harmful or infringing media.
+- This is a single-PC Node.js server, not a distributed CDN. Storage,
+  internet upstream capacity, uptime and secure tunnel configuration still
+  determine how many viewers it can serve reliably.
+
+TESTING COMPLETED IN ISOLATED STAGING
+- Node.js syntax checks for server, app and service worker.
+- End-to-end API: public feed, byte-range video streaming, accounts,
+  viewer uploads, video likes/saves/comments/replies, follows, notifications,
+  universal search, creator profiles, reports and persistence.
+- Moderator authorization; hide/restore prevents direct access to hidden host
+  videos; profile photo signature validation and retrieval.
+- Isolated Chromium desktop and mobile interaction checks: feed, social actions,
+  creator view, search, community directory, saved library, comments.
+- Not yet tested with YOUR Windows files, public Cloudflare Tunnel, or real
+  browsers/network conditions on beats.teamtrader.co.za.

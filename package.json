@@ -1,0 +1,12 @@
+{
+  "name": "mzansi-beats",
+  "version": "1.4.1",
+  "description": "South African music streaming & video platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

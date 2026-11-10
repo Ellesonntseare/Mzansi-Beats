@@ -1,0 +1,49 @@
+MZANSI BEATS — THE STAGE / LAYOUT REDESIGN
+Application package: 1.4.1. Existing backend API health version: 4.0.
+
+A NEW STRUCTURE
+- The wide desktop sidebar is replaced by horizontal Watch / Listen / Explore
+  navigation. Other destinations live in a More menu.
+- Videos occupy a broad central theater. Feed filters move above the stage.
+  On desktop, creator details sit below playback and actions sit beside it.
+- Up next and The sounds share an independent discovery column. On tablet
+  it opens from the side; on mobile it becomes a sliding discovery drawer.
+- Mobile has Watch, Listen, Create, Explore and You tabs with a central Create
+  action. Feed filters scroll horizontally instead of squeezing every label.
+- Listen is rebuilt as a listening room: featured release and artwork,
+  fresh rotation, genre strip, recommendations, releases, charts and creators.
+- Explore uses a numbered genre directory and a regional discovery panel.
+- Your collection has separate account shortcuts, saved moments, songs and
+  playlist sections. Creator, chart and insight surfaces use matching spacing.
+- Search opens from the header. Create offers video or music release paths.
+- Existing video controls, reports, owner deletion, linking music, account
+  access and artist uploads remain connected to their original endpoints.
+- Browser cache identifiers are updated to load the new markup and stylesheet.
+
+UPDATE YOUR WINDOWS INSTALLATION
+1. Stop the current Node server and back up your entire working site folder.
+2. Extract this ZIP into a NEW folder. Keep the existing installation as backup.
+3. Copy your existing data folder into the new mzansi-beats folder. This keeps
+   accounts, uploads, purchases, thumbnails and database records.
+4. Copy VIDEO-FOLDER.txt if present and preserve your environment settings,
+   payment keys and chosen video directory. This ZIP contains no user data.
+5. Run START-WINDOWS.bat in the new folder. Keep your tunnel pointed at the
+   same configured port. Refresh your browser with Ctrl+Shift+R.
+6. Check Watch, Listen, Explore, You, both upload options and the More menu.
+   On mobile, open Explore on the video toolbar to try the discovery drawer.
+
+VERIFICATION
+- All shipped JavaScript files pass Node syntax checks.
+- Render smoke checks cover populated and empty watch/listen screens,
+  genre discovery, guest and signed-in collections, creation, navigation,
+  music uploads and video owner menus.
+- Generated HTML event handlers compile successfully. A broken inherited
+  genre-selector handler is corrected.
+- Server source, storage helpers and launchers are retained unchanged.
+- CSS delimiters and ZIP integrity are checked.
+- No browser preview tool was available in the build environment. Desktop
+  and mobile visual rendering, real playback and your Windows deployment
+  still need to be checked in a browser after installing this update.
+
+This is a layout release. It does not add adaptive streaming, a new database,
+new hosting, editing tools or a new recommendation model.

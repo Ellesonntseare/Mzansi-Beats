@@ -1,0 +1,36 @@
+FUTURE//BEATS — SIGNAL NOIR
+PHASE 1 / DESIGN & UX RELEASE
+
+Visual redesign:
+* Custom dark/gold/teal design system, edge lighting and editorial banners.
+* New desktop left navigation, compact responsive header and mobile tabs.
+* Cinematic homepage, music genre tiles and discovery prompts.
+* Redesigned theater feed with side discovery and a mobile full-height player.
+* Consistent styling for discovery, charts, library, artists, Creator Studio,
+  admin screens, dialogs and now-playing music controls.
+* Refreshed icon and installable PWA theme.
+
+Performance:
+* Extracted HTML/CSS/JS into maintainable files.
+* Lazy-load cover artwork via IntersectionObserver.
+* Pause distant videos and release sources outside the 2-video window.
+* Pause the video feed when the tab is hidden.
+* Reduced-motion support, focus indicators, and cache update.
+
+Compatibility:
+* Server code and existing public video API kept unchanged.
+* All user videos, host videos and creator video uploads share the public feed.
+* Back up data/ and VIDEO-FOLDER.txt on upgrades.
+* No desktop or mobile PC-video/host/source labels exposed in the public UI.
+
+Verification performed:
+* Node syntax checks on app.js, sw.js, server.js.
+* Live API tests for /api/public-feed and browser byte-range streaming.
+* Successful viewer registration and community video upload in staging.
+* Isolated Chromium desktop/mobile screenshots for Home, Videos,
+  Discover and Charts with zero page JavaScript errors.
+* Public HTTP browser navigation was blocked by the test environment;
+  live domain/browser end-to-end remains to be tested on your Windows PC.
+
+DEPLOYMENT: Stop node, back up data and configuration, extract app files,
+start server, hard-refresh client. Cloudflare Tunnel should target correct port.

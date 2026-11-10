@@ -1,0 +1,16 @@
+PHASE 2 - QUICK UPDATE
+
+1. Close the current START-WINDOWS.bat window.
+2. Copy your current mzansi-beats directory to mzansi-beats-BACKUP.
+3. Extract this ZIP to a new directory.
+4. Copy from your backup into the new mzansi-beats directory:
+   - data/ (ENTIRE folder including db.json and community-videos/)
+   - VIDEO-FOLDER.txt (if present)
+5. Open START-WINDOWS.bat.
+6. In your browser, visit http://localhost:3000 and then https://beats.teamtrader.co.za/.
+7. Hard refresh with Ctrl+Shift+R. Log in and test Phase 2 features.
+
+Don't upload your database or private login information to anyone.
+Don't post a video unless you have permission to distribute it.
+
+See PHASE2-RELEASE-NOTES.txt for full details and rollback.

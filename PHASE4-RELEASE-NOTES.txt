@@ -1,0 +1,113 @@
+MZANSI BEATS / FUTURE//BEATS
+PHASE 4 — DISCOVERY, CREATOR INSIGHTS, MUSIC × VIDEO
+=======================================================
+
+RELEASE VERSION: 4.0 (application package 1.4.0)
+This cumulative ZIP contains Phases 1–4. It does NOT contain existing
+users, accounts, uploads, video files, video-folder settings, or API keys.
+
+NEW FEATURES
+============
+1. SMARTER DISCOVERY
+   - The For You feed ranks videos using time since upload, recent video
+     views, likes, saves, comments, follows, and the viewer's own activity.
+   - Following and Trending feed modes; featured and creator video tabs
+     remain supported.
+   - Mixed recommendations reduce the chance of one creator/source filling
+     all the first video slots when videos from other creators exist.
+   - This is a lightweight, explainable ranking system, NOT a trained AI
+     recommendation model. Signed-out viewers see a general ranking.
+
+2. MZANSI PULSE / REGIONAL DISCOVERY
+   - A redesigned Mzansi Pulse page provides all-region and province views.
+   - Regional charts include only content with explicit province metadata.
+   - Featured/Windows-hosted videos with no province stay in all-region
+     discovery, not assigned to a province automatically.
+   - Available from the sidebar, homepage, charts, and signed-in Library.
+
+3. REAL VIDEO ANALYTICS
+   - A creator insights dashboard is available to any signed-in account
+     (including community video uploaders).
+   - Video views, likes, comments, saves, followers, 7-day view activity,
+     and per-video engagement summaries.
+   - Views are counted after playback reaches a meaningful point and are
+     deduplicated for a few minutes per account/browser connection.
+   - Metrics come from a recent bounded event log (latest 30,000 view
+     events), so historical all-time totals are NOT guaranteed.
+   - Aggregated viewer counts are not independently verified unique users.
+
+4. MUSIC × VIDEO INTEGRATION
+   - Creators can optionally link an existing Mzansi Beats audio release
+     when uploading a video, or edit the link on their own video later.
+   - Viewers see a credited track and can navigate to a sound detail page,
+     play the associated song, and discover videos with that linked song.
+   - Linking does NOT edit/replace/mix the original video's audio, or
+     create permission to reuse copyrighted music. Use authorized media.
+
+5. WATCH HISTORY
+   - Signed-in viewers can revisit recent watched videos and clear personal
+     history under Library → Watch history.
+   - Clearing history removes account identity from past video view events
+     (aggregate counts remain); watch-based personalization then resets.
+
+PHASE 1–3 FEATURES STILL INCLUDED
+=================================
+- FUTURE//BEATS dark futuristic design and responsive mobile/video theater
+- Accounts, creator profiles, likes/comments/follows, bookmarks, reporting
+- Public PC-video folder streaming and community video uploads
+- Music player, library, charts, artist music uploads and payment integrations
+- Optional FFmpeg thumbnail/format conversion, caching and backups
+- Admin moderation and server performance screen
+
+WINDOWS UPGRADE: PRESERVE YOUR REAL DATA
+=======================================
+1. Stop the running Node.js process that Cloudflare Tunnel currently targets.
+2. Make a COMPLETE backup of the current website directory and data folder.
+   Store an extra copy of data/ off the PC if practical.
+3. Unzip this release into a NEW folder (do not overwrite the working app).
+4. Copy the existing data/ folder (including db.json, community-videos,
+   uploads, thumbnails, backups) into the new mzansi-beats/ folder.
+5. Copy VIDEO-FOLDER.txt if it exists. Keep the existing VIDEO_DIR environment
+   variable or run CHOOSE-VIDEOS-FOLDER.bat to select the intended folder.
+6. Preserve any required environment variables, credentials and API keys;
+   these secrets should NOT be placed in the public website directory.
+7. On Windows, run START-WINDOWS.bat. Only one process should bind port 3000.
+8. Test http://localhost:3000/api/health  (expect version 4.0),
+   http://localhost:3000/api/public-feed, and sample videos.
+9. Make sure the tunnel route for beats.teamtrader.co.za reaches the running
+   local server (usually http://localhost:3000). Do not change port if a
+   reverse proxy is deliberately configured on another port.
+10. Visit your public domain. Refresh or hard-refresh (Ctrl+Shift+R).
+11. Register/sign into a test account, try a short upload, like, comment,
+    video watch, Pulse filter, Insights, music link, and account history.
+
+ROLLBACK
+========
+Stop the Phase 4 process and return to the entire backed-up application and
+its matching data directory. Do not discard changes made after upgrading.
+
+IMPORTANT LIMITATIONS
+=====================
+- Video hosting depends on your Windows computer staying on and having enough
+  upload speed, disk space, and an allowed public streaming route.
+- This does NOT include adaptive bitrate streaming, HLS/DASH/CDN delivery,
+  a machine-learning recommendation model, or an external analytics service.
+- Content moderation, DMCA/copyright requests, data retention policies,
+  automated abuse protection and legal compliance remain operational duties.
+- Do not place personal/private content in the publicly streamed video folder.
+- Only stream music/videos you have rights or permission to distribute.
+- JSON database persistence remains appropriate for modest use; growth to
+  large audiences should use a proper database, background job queue, and
+  specialized video hosting. Continuous backups are essential.
+- Real Windows and public-domain deployment are NOT tested in this build
+  environment. Test them after updating your server.
+
+VERIFIED IN ISOLATED TESTS
+=========================
+- Backend API: registration, song upload, video upload, linked music,
+  playback by byte range, per-province discovery, followed video feed,
+  views/likes/saves/comments, analytics access control, unauthorized edit
+  denial, watch-history clear, and persistence after server restart.
+- Frontend desktop and mobile Chromium: feed, profile, comments, search,
+  creator pages, Pulse, video insights, history, music detail screens.
+- JavaScript syntax checks and ZIP integrity checks.

@@ -1,0 +1,79 @@
+MZANSI BEATS / FUTURE//BEATS
+PHASE 3 — PERFORMANCE & RELIABILITY RELEASE
+===========================================
+
+This release builds on Phase 2. It preserves existing music features,
+accounts, video likes/comments/follows, viewer uploads, and the Windows
+video directory. This ZIP does not contain existing accounts or videos.
+
+NEW FEATURES
+- Automatic thumbnail generation for Featured, community and artist videos
+  when FFmpeg is available. Images are cached under data/video-thumbnails/.
+  When FFmpeg is unavailable, an ordinary placeholder is used instead.
+- Optional background conversion of visitor-uploaded incompatible formats
+  into browser-friendly H.264/AAC MP4, without modifying Featured videos
+  from your Windows folder. Existing playable H.264 MP4 uploads are kept.
+- Progressive display of video cards (load nearby items on demand) to
+  reduce DOM work when the feed has many videos.
+- HTTP gzip compression for JSON and small frontend assets when supported.
+- Existing HTTP byte-range video streaming is retained, with correct 416
+  responses for invalid ranges.
+- Serialized atomic database writes and daily JSON snapshots retained for
+  up to seven days in data/backups/ (also checked periodically).
+- An admin-only Server performance view showing optimizer status and jobs.
+- Updated service-worker asset cache to avoid stale Phase 2 scripts.
+
+OPTIONAL FFMPEG SETUP ON WINDOWS
+Install FFmpeg and FFprobe so the commands `ffmpeg -version` and
+`ffprobe -version` work in the Command Prompt BEFORE starting the server.
+Or set FFMPEG_PATH and FFPROBE_PATH to the full executable paths in the
+server environment. The website does not require FFmpeg to run.
+Set VIDEO_TRANSCODE=0 to disable optional conversion if CPU use is high.
+Video conversion occurs after the upload succeeds; visitors may briefly
+see the original file while a new format is prepared.
+
+SAFE WINDOWS UPGRADE
+1. STOP the old Node.js server.
+2. BACK UP the current full website folder, especially data/ and
+   VIDEO-FOLDER.txt. Keep all user uploads and database files intact.
+3. Extract this ZIP to a NEW folder.
+4. Copy the complete existing data/ folder into the new mzansi-beats/
+   folder and also copy VIDEO-FOLDER.txt if it exists. Retain any VIDEO_DIR
+   environment setting and credentials/keys set in the server environment.
+5. Start START-WINDOWS.bat in the new folder. Keep exactly one Node server
+   on your public tunnel port (normally localhost:3000).
+6. Check http://localhost:3000/api/health (version 3.0) and
+   http://localhost:3000/api/public-feed, then test sample playback and
+   a sample authorized visitor upload.
+7. Confirm the secure public routing still reaches your new server.
+8. Visit beats.teamtrader.co.za and hard refresh (Ctrl+Shift+R).
+9. From your admin account, open Admin → Server performance for FFmpeg status.
+
+ROLLBACK
+Stop the new process, return to the backed-up application and data/, and
+restart the old process. Do not combine a newer working database file with
+an older application without testing compatibility first.
+
+IMPORTANT LIMITATIONS
+- This is not adaptive bitrate/HLS/DASH delivery or a CDN. Internet upload
+  bandwidth and your PC uptime still control streaming performance.
+- FFmpeg background jobs can use CPU, disk and extra temporary storage.
+- Database snapshots are not a substitute for off-PC backups. Keep the
+  data/ directory, including database and session tokens, private.
+- Every authorized video in the configured public Windows video folder and
+  scanned subfolders can be viewed by visitors. Only share content you
+  have permission to distribute, and do not keep private videos there.
+- Keep the computer and Node.js patched, review uploads and reports, and
+  use a suitably configured HTTPS origin and a service permitting video
+  distribution. This release is not a production security audit.
+- Your live Windows PC and public Cloudflare route have not been tested
+  from this development environment. Verify them after deployment.
+
+VERIFIED IN ISOLATED DEVELOPMENT TESTS
+- Node server/frontend/media optimizer syntax; HTTP health and auth;
+  thumbnails, thumbnail caching, video byte-range responses, gzip, account
+  creation, viewer uploads, WebM-to-H.264 conversion, likes, saves, and
+  comments. Data persisted after restart, and a daily backup was created.
+- Headless Chromium checks on desktop and mobile: first-batch card count,
+  loading deeper feed positions, comments, profile, search and Library,
+  without JavaScript exceptions.
